@@ -3,7 +3,7 @@ package students;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class Pila extends LinkedList<Studente> {
+public class Pila extends LinkedList<Studente> implements IntPila<Studente> {
 
 	public Pila() {
 		super();
