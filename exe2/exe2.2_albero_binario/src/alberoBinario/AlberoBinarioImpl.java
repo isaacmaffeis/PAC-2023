@@ -197,18 +197,78 @@ public class AlberoBinarioImpl implements AlberoBinario{
 		if(u.destro == null && u.sinistro== null) return 0;
 		return 1 + Math.max(altezza(u.destro), altezza(u.sinistro)); 
 	}
-
-	
-	
-	
-	
 	
 	@Override
 	public int numFoglie() {
-		return 0;
+		if(radice == null)
+			return -1;
+		return numFoglie(radice);
+	}
+
+	private int numFoglie(NodoBinario nodo) {
+		if(nodo == null)
+			return 0;
+		if((nodo.sinistro == null) && (nodo.destro == null))
+			return 1;
+		return numFoglie(nodo.sinistro) + numFoglie(nodo.destro);
+	}
+
+	@Override
+	public int numNodiInterni() {
+		if(radice == null)
+			return -1;
+		return numNodiInterni(radice);
+	}
+
+	private int numNodiInterni(NodoBinario nodo) {
+		if(nodo == null || (nodo.sinistro==null && nodo.destro==null))
+			return 0;
+		return 1 + numNodiInterni(nodo.sinistro) + numNodiInterni(nodo.destro);	
+	}
+
+	@Override
+	public boolean equals(Object anotherTree) {
+		if(this == anotherTree)
+			return true;
+		if(anotherTree instanceof AlberoBinario)
+			return equals((AlberoBinario) anotherTree);
+		return false;
 	}
 	
-	
+	private boolean equals(AlberoBinario anotherTree) {
+		if(this.radice == null && anotherTree.radice()==null)
+			return true;
+		return equals(radice,anotherTree.radice());
+	}
+
+	private boolean equals(NodoBinario nodoA, NodoBinario nodoB) {
+		if(nodoA==null && nodoB==null)
+			return true;
+		if(nodoA==null && nodoB!=null)
+			return false;
+		if(nodoB==null)
+			return false;
+		return nodoA.elem.equals(nodoB.elem) && equals(nodoA.sinistro,nodoB.sinistro) && equals(nodoA.destro,nodoB.destro);
+	}
+
+	@Override
+	public void eliminaFoglieUguali() {
+		if(radice==null)
+			return;
+		eliminaFoglieUguali(radice);
+	}
+
+	private void eliminaFoglieUguali(NodoBinario nodo) {
+		if(nodo==null)
+			return;
+		if(nodo.sinistro == null && nodo.destro == null) {
+			if(!nodo.equals(nodo.padre.destro) && nodo.elem.equals(nodo.padre.destro.elem))
+				this.potaDestro(nodo.padre);
+			return;
+		}
+		eliminaFoglieUguali(nodo.sinistro);
+		eliminaFoglieUguali(nodo.destro);
+	}
 	
 }
 

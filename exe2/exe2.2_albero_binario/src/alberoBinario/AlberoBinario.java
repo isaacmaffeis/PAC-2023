@@ -210,4 +210,27 @@ public interface AlberoBinario {
 	 * @return il numero di foglie presenti nell'albero.
 	 */
 	public int numFoglie();
+	
+	/**
+	 * Restituisce il numero di nodi interni dell’ albero binario.
+	 * 
+	 * @return numero di nodi interni dell’ albero binario.
+	 */
+	public int numNodiInterni();
+	
+	/**
+	 *  restituisce true se l’albero (this) e anotherTree (eventualmente vuoti)
+	 *  sono uguali (stessa struttura e medesimi contenuti); 
+	 *  false, altrimenti.
+	 * 
+	 * @param anotherTree oggetto di tipo albero
+	 * @return <code>true</code> se l’albero (this) e anotherTree sono uguali, <code>false</code> altrimenti.
+	 */
+	public boolean equals (Object anotherTree);
+	
+	/**
+	 * modifica l’albero eliminando tutte le foglie che hanno 
+	 * un valore uguale al valore del fratello.
+	 */
+	public void eliminaFoglieUguali();
 }

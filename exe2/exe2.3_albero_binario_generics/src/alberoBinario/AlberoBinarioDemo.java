@@ -91,7 +91,7 @@ public class AlberoBinarioDemo {
 		System.out.println("alb8.visitaDFS()"); 
 		visita = (LinkedList<Integer>) alb8.visitaDFS();
 		System.out.println(visita.toString());
-		
+				
 				
 	}	
 }
