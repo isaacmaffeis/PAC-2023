@@ -451,4 +451,17 @@ public class AlberoBinarioImpl<D extends Comparable<? super D>> implements
 		if (n.destro != null)
 			inorder(n.destro, output);
 	}
+
+	//**************************/
+	
+	public int level() {
+		if(radice==null) return -1; // albero vuoto
+		return level(radice);
+	}
+	
+	public int level(NodoBinario u) {
+		if(u.padre==null) // u è radice
+			return 0;
+		return level(u.padre) + 1;
+	}
 }

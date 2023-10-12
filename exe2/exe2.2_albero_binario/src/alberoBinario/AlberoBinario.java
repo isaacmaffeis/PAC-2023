@@ -187,4 +187,27 @@ public interface AlberoBinario {
 	 * @return la lista dei nodi incontrati durante la visita BFS
 	 */
 	public List visitaBFS();
+	
+	/**
+	 * restituisce la profondit&agrave (o livello) di un nodo. 
+	 * Ricorda che la profondità della radice è 0 e quella di un nodo diverso
+	 * dalla radice è quella del padre del nodo, incrementata di 1.
+	 * 
+	 * @return profondit&agrave  di un nodo
+	 */
+	public int level(NodoBinario u);
+	
+	/**
+	 * Restituisce l'altezza dell'albero.
+	 * 
+	 * @return l'altezza dell'albero.
+	 */
+	public int altezza();
+	
+	/**
+	 * Restituisce il numero di foglie presenti nell'albero.
+	 * 
+	 * @return il numero di foglie presenti nell'albero.
+	 */
+	public int numFoglie();
 }

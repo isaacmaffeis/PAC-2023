@@ -175,7 +175,40 @@ public class AlberoBinarioImpl implements AlberoBinario{
 		}
 		return output;
 	}
+	
+	public int level() {
+		if(radice==null) return -1; // albero vuoto
+		return level(radice);
+	}
+	
+	public int level(NodoBinario u) {
+		if(u.padre==null) // u è radice
+			return 0;
+		return level(u.padre) + 1;
+	}
+	
+	public int altezza() {
+		if(radice == null) return -1;
+		return altezza(radice);
+	}
+	
+	public int altezza(NodoBinario u) {
+		if(u==null) return -1;
+		if(u.destro == null && u.sinistro== null) return 0;
+		return 1 + Math.max(altezza(u.destro), altezza(u.sinistro)); 
+	}
 
+	
+	
+	
+	
+	
+	@Override
+	public int numFoglie() {
+		return 0;
+	}
+	
+	
 	
 }
 

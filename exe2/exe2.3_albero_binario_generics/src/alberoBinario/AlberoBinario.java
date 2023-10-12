@@ -273,4 +273,17 @@ public interface AlberoBinario<D extends Comparable<? super D>> {
 	 * @return la lista dei nodi incontrati durante la visita BFS
 	 */
 	public List<D> visitaBFS();
+	
+	//*********************//
+	
+	/**
+	 * restituisce la profondit&agrave (o livello) di un nodo. 
+	 * Ricorda che la profondità della radice è 0 e quella di un nodo diverso
+	 * dalla radice è quella del padre del nodo, incrementata di 1.
+	 * 
+	 * @return profondit&agrave  di un nodo
+	 */
+	public int level(NodoBinario u);
+
+	public boolean equals(Object anotherTree);
 }
