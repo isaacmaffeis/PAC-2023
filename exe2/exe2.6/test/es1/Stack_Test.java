@@ -2,8 +2,9 @@ package es1;
 
 import static org.junit.Assert.*;
 
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 import org.junit.Test;
 
@@ -17,13 +18,16 @@ public class Stack_Test {
 		stack.addFirst(2);
 		stack.addFirst(3);
 		stack.addFirst(4);
-		LinkedList<Integer> stack_inv = new Stack<>();
-		stack_inv = (LinkedList<Integer>) stack.clone();
 		System.out.println("Stack:" + stack.toString());
-		Collections.reverse(stack_inv);
+		Deque<Integer> stack_inv = new ArrayDeque<>();
+		Iterator<Integer> it = stack.descendingIterator();
+		while(it.hasNext()) {
+			stack_inv.addLast(it.next());
+		}
 		stack.inv_stack();
 		System.out.println("Stack:" + stack.toString());
-		assertEquals(stack, stack_inv);
+		System.out.println("Stack_inv:" + stack_inv.toString());
+		assertEquals(stack.toString(), stack_inv.toString());
 	}
 	
 	@Test
@@ -34,13 +38,16 @@ public class Stack_Test {
 		stack.addFirst('b');
 		stack.addFirst('c');
 		stack.addFirst('d');
-		LinkedList<Character> stack_inv = new Stack<>();
-		stack_inv = (LinkedList<Character>) stack.clone();
 		System.out.println("Stack:" + stack.toString());
-		Collections.reverse(stack_inv);
+		Deque<Character> stack_inv = new ArrayDeque<>();
+		Iterator<Character> it = stack.descendingIterator();
+		while(it.hasNext()) {
+			stack_inv.addLast(it.next());
+		}
 		stack.inv_stack();
 		System.out.println("Stack:" + stack.toString());
-		assertEquals(stack, stack_inv);
+		System.out.println("Stack_inv:" + stack_inv.toString());
+		assertEquals(stack.toString(), stack_inv.toString());
 	}
 
 }
