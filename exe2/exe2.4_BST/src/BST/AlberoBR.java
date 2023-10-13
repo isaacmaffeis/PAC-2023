@@ -1,5 +1,9 @@
 package BST;
 
+import alberoBinario.AlberoBinarioImpl;
+import alberoBinario.NodoBinario;
+import alberoBinario.AlberoBinario;
+
 public class AlberoBR extends AlberoBinarioImpl implements Dizionario{
 	
      /*  Metodi accessori */	
