@@ -174,6 +174,12 @@ public class AlberoBinarioDemo{
 		System.out.println("alb21.visitaBFS()");
 		visita = (LinkedList) alb21.visitaBFS();
         System.out.println(visita.toString());
-
+        
+		System.out.println("search nodo 22");
+        System.out.println(alb21.search(nodo22.elem));
+        
+		System.out.println("Lista nodi cardine: ");
+        System.out.println(alb21.nodiCardine().toString());
+		
 	}	
 }

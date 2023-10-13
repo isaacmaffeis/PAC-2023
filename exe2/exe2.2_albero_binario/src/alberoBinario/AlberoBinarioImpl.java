@@ -1,5 +1,6 @@
 package alberoBinario;
 import java.util.List; //Per l'output delle visite
+import java.util.ArrayList;
 import java.util.LinkedList; //Per l'output delle visite
 
 import coda.*; //Per la visita BFS (come esempio di struttura dati propria)
@@ -268,6 +269,40 @@ public class AlberoBinarioImpl implements AlberoBinario{
 		}
 		eliminaFoglieUguali(nodo.sinistro);
 		eliminaFoglieUguali(nodo.destro);
+	}
+
+	@Override
+	public boolean search(Object elem) {
+		if(radice==null)
+			return false;
+		return search(radice,elem);
+	}
+
+	private boolean search(NodoBinario node, Object elem) {
+		if(node==null)
+			return false;
+		if(node.elem.equals(elem))
+			return true;
+		return search(node.sinistro,elem) || search(node.destro,elem);
+	}
+
+	@Override
+	public List nodiCardine() {
+		if(radice==null)
+			return null;
+		List<NodoBinario> lista = new ArrayList<>();
+		nodiCardine(radice,lista);
+		return lista;
+	}
+
+	private void nodiCardine(NodoBinario nodo, List<NodoBinario> lista) {
+		if(nodo==null)
+			return;
+		if(altezza(nodo)==level(nodo)) {
+			 lista.add(nodo);
+		}
+		nodiCardine(nodo.sinistro, lista);
+		nodiCardine(nodo.destro, lista);
 	}
 	
 }

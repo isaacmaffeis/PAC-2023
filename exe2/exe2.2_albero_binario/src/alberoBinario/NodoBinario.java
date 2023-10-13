@@ -13,4 +13,11 @@ class NodoBinario{
 		elem = el;
 		padre = sinistro= destro = null;	
 	}
+
+	
+	@Override
+	public String toString() {
+		return "" + elem;
+	}
+	
 }

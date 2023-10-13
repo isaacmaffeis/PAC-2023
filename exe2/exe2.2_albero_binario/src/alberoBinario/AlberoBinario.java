@@ -233,4 +233,24 @@ public interface AlberoBinario {
 	 * un valore uguale al valore del fratello.
 	 */
 	public void eliminaFoglieUguali();
+	
+	/**
+	 * stabilisce se un elemento appartiene o meno all’albero binario, 
+	 * attraverso una visita esaustiva ricorsiva. 
+	 * Il caso base è banale: se l'albero è vuoto, si restituisce false (zero).
+	 * La visita viene interrotta non appena si trova l'elemento cercato (la prima occorrenza).
+	 * 
+	 * @param elem , l'elemento di tipo Object 
+	 * @return <code>true</code> se l'elemento è presente, <code>false</code> altrimenti.
+	 */
+	public boolean search (Object elem);
+	
+	/**
+	 * algoritmo ricorsivo che restituisce i noti cardine di T.
+	 * In un albero binario T, un nodo u è un nodo cardine se e solo se pu=hu 
+	 * dove pu è la profondità di u e hu è l’altezza dell’albero radicato in u.
+	 * 
+	 * @return i nodi cardine di T
+	 */
+	public List nodiCardine();
 }
