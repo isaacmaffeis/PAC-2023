@@ -253,4 +253,12 @@ public interface AlberoBinario {
 	 * @return i nodi cardine di T
 	 */
 	public List nodiCardine();
+	
+	/**
+	 * verifica se l'lbero è vuoto o meno
+	 * 
+	 * @return true se l'albero è vuoto, false altrimenti
+	 */
+	public boolean isEmpty();
+	
 }

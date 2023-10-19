@@ -2,6 +2,11 @@ package BST;
 
 import alberoBinario.AlberoBinarioImpl;
 import alberoBinario.NodoBinario;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import alberoBinario.AlberoBinario;
 
 public class AlberoBR extends AlberoBinarioImpl implements Dizionario{
@@ -46,9 +51,6 @@ public class AlberoBR extends AlberoBinarioImpl implements Dizionario{
 			else y.destro = z;										
 		}			
 	}
-
-	
-	
 	
 	/**
 	 * Restituisce l'elemento <code>e</code> con chiave <code>k</code>.
@@ -112,10 +114,6 @@ public class AlberoBR extends AlberoBinarioImpl implements Dizionario{
 			}
 		}	
 	
-	
-	
-	
-	
 	/**
 	 * Ricerca del nodo con valore max della chiave
 	 * nel sottoalbero radicato in u 
@@ -125,9 +123,101 @@ public class AlberoBR extends AlberoBinarioImpl implements Dizionario{
 		NodoBinario v = u;		
 		while(v.destro != null) 
 			v=v.destro;//mi sposto piu' a destra possibile
-		return v;	
-		
+		return v;		
 	}
 	
+	/**
+	 * Ricerca del nodo con valore min della chiave
+	 * nel sottoalbero radicato in u 
+	 * @param u Nodo radice del sottoalbero
+	 */
+	public NodoBinario min(NodoBinario u){
+		NodoBinario v = u;		
+		while(v.sinistro != null) 
+			v=v.sinistro;//mi sposto piu' a sinistra possibile
+		return v;		
+	}
+
+	@Override
+	public List inorder() {
+		if(radice == null)
+			return null;
+		List<Object> lista = new LinkedList<>();
+		inorder(radice, lista);
+		return lista;
+	}
+
+	private void inorder(NodoBinario nodo, List<Object> lista) {
+		if (nodo == null)
+			return;
+		inorder(nodo.sinistro, lista);
+		lista.add(nodo.elem);
+		inorder(nodo.destro,lista);
+	}
+
+	@Override
+	public Object pred(Comparable k) {
+		NodoBinario nodo = searchNodo(k,radice);
+		if(nodo == null)
+			return null;
+		if(nodo.sinistro != null)
+			return max(nodo.sinistro);
+		while(nodo.padre != null && nodo == (nodo.padre.sinistro)) {
+			nodo = nodo.padre;
+		}
+		return nodo.padre;
+	}
+
+	@Override
+	public Object succ(Comparable k) {
+		NodoBinario nodo = searchNodo(k,radice);
+		if(nodo == null)
+			return null;
+		if(nodo.destro != null)
+			return min(nodo.destro);
+		while(nodo.padre != null && nodo == (nodo.padre.destro)) {
+			nodo = nodo.padre;
+		}
+		return nodo.padre;
+	}
+
+	@Override
+	public AlberoBR intersezione(AlberoBR albA, AlberoBR albB) {
+		if(albA.isEmpty() || albB.isEmpty() )
+			return null;
+		NodoBinario radiceIntersezione = intersezione(albA.radice, albB.radice);
+	    AlberoBR alberoIntersezione = new AlberoBR(radiceIntersezione);
+	    return alberoIntersezione;
+	}
+
+	private NodoBinario intersezione(NodoBinario nodoA, NodoBinario nodoB) {
+	    if (nodoA == null || nodoB == null) {
+	        return null;
+	    }
+	    	    
+	    NodoBinario nodoIntersezione = new NodoBinario(0);
+	    
+	    // inorder
+	    nodoIntersezione.sinistro = intersezione(nodoA.sinistro,nodoB.sinistro);
+	    
+	    if(nodoA.elem.equals(nodoB.elem))
+	    	nodoIntersezione.elem = nodoA.elem;
+	    else
+	    	nodoIntersezione = null;
+	    
+	    nodoIntersezione.destro = intersezione(nodoA.destro,nodoB.destro);
+
+	    
+		return nodoIntersezione;
+	    
+	}
+
+	public AlberoBR(NodoBinario rad) {
+		super(rad);
+	}
 	
+	public AlberoBR() {
+		super();
+	}
+
 }

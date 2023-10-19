@@ -1,5 +1,8 @@
 package BST;
 
+import java.util.List;
+
+import alberoBinario.NodoBinario;
 
 /**
  * Un dizionario &egrave; una collezione di elementi a cui sono associate chiavi.
@@ -40,4 +43,38 @@ public interface Dizionario {
 	 * @return elemento di chiave k, null se assente
 	 */	
 	public Object search(Comparable k);	
+	
+	/**
+	 * prima il nodo sinistro, poi la radice e poi il nodo destro
+	 *  
+	 * @return Lista con il valore dei nodi in ordine  
+	 */
+	public List inorder();
+	
+	/**
+	 * Ricerca del predecessore
+	 * 
+	 * @param k chiave del nodo binario in esame
+	 * @return il predecessore del nodo fornito
+	 */
+	public Object pred(Comparable k);
+	
+	/**
+	 * Ricerca del successore
+	 * 
+	 * @param k chiave del nodo binario in esame
+	 * @return il predecessore del nodo fornito
+	 */
+	public Object succ(Comparable k);
+	
+	/**
+	 * dati due insiemi numerici rappresentati mediante alberi
+	 * binari di ricerca (senza ripetizioni), restituisce
+	 * l'albero rappresentante l'intersezione dei due insiemi
+	 * 
+	 * @param alb1 albero binario di ricerca rappresentante l'insieme 1
+	 * @param alb2 albero binario di ricerca rappresentante l'insieme 2
+	 * @return albero binario rappresentante l'intersezione di alb1 e alb2
+	 */
+	public AlberoBR intersezione(AlberoBR alb1, AlberoBR alb2);
 }

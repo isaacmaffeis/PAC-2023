@@ -305,5 +305,11 @@ public class AlberoBinarioImpl implements AlberoBinario{
 		nodiCardine(nodo.destro, lista);
 	}
 	
+	public boolean isEmpty() {
+		if(this.radice == null)
+			return true;
+		return false;
+	}
+	
 }
 
