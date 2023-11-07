@@ -34,7 +34,7 @@ public class JGraphtExample1_bis {
 		// stampo il grafo 
 		System.out.println(grafo.toString()); 
 		
-		//Visita in profondità con un iteratore
+		//Visita in profondita' con un iteratore
 		Iterator<String> iterator = new DepthFirstIterator<>(grafo, "1");
         while (iterator.hasNext()) {
             String s = iterator.next();
