@@ -1,3 +1,9 @@
+/*
+ * Description: controller class (pattern model-view-controller)
+ * Author: Isaac Maffeis
+ * Created on: 15/11/2023
+ * Version: 2
+ */
 package controller;
 
 import java.awt.event.*;
@@ -5,14 +11,24 @@ import java.awt.event.*;
 import model.Model;
 import view.View;
 
+/**
+ * The Class Controller (MVC pattern).
+ */
 public class Controller {
-	// Riferimenti, il controller deve interagire sia con la view che con il modello
-	private Model m_model;
-	private View m_view;
+	
+	/** The model. */
+	private Model model;
+	
+	/** The m view. */
+	private View view;
 
-	// Costruttore
+	/**
+	 * Instantiates a new controller.
+	 *
+	 * @param model the model
+	 * @param view the view
+	 */
 	public Controller(Model model, View view) {
-		// alloco i riferimenti passati
 		this.model = model;
 		this.view = view;
 
@@ -25,8 +41,25 @@ public class Controller {
 	 * Definizione dei listener (Inner classes)
 	 */
 	// Listener per la moltiplicazione. Questa azione viene eseguita quando
-	// l'utente preme il tasto di moltiplicazione
+	/**
+	 * The listener interface for receiving check events.
+	 * The class that is interested in processing a check
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>addCheckListener<code> method. When
+	 * the check event occurs, that object's appropriate
+	 * method is invoked.
+	 *
+	 * @see CheckEvent
+	 */
+	// l'utente preme il tasto
 	class CheckListener implements ActionListener {
+		
+		/**
+		 * Action performed.
+		 *
+		 * @param e the action event
+		 */
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("[CONTROLLER] Check action received");
 			String userInput = "";
