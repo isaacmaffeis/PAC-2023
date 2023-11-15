@@ -1,3 +1,9 @@
+/*
+ * Description: view class (pattern model-view-controller)
+ * Author: Isaac Maffeis
+ * Created on: 15/11/2023
+ * Version: 2
+ */
 package view;
 
 import java.awt.*;
@@ -6,29 +12,35 @@ import javax.swing.*;
 import model.Model;
 
 import java.awt.event.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-// View. Implementiamo "Observer" per fare in modo di
-// controllare le modifiche sul model e venir notificati ad ogni modifica
-// del model
-@SuppressWarnings("deprecation")
-public class View extends JFrame implements Observer {
-	// Campi della view
+
+/**
+ * The Class View (observer).
+ */
+public class View extends JFrame implements PropertyChangeListener {
+	
+	/** The user input. */
 	private JTextField userInputTf = new JTextField(5);
+	
+	/** The output. */
 	private JTextField output = new JTextField(20);
+	
+	/** The check button. */
 	private JButton checkBtn = new JButton("Controlla");
 
-	// Riferimento a model
+	/** The model (pattern MVC). */
 	private Model model;
 
-	// Costruttore
+	/**
+	 * Instantiates a new view.
+	 *
+	 * @param model the model (pattern MVC)
+	 */
 	public View(Model model) {
 		// Alloco il riferimento passato relativo al modello
 		this.model = model;
-		// Il model implementa Observable, aggiungo al modello un Observer
-		// (la view stessa)
-		this.model.addObserver(this);
 
 		// Inizio a configurare la vista
 		output.setText(this.model.getResult());
@@ -45,6 +57,9 @@ public class View extends JFrame implements Observer {
 
 		// Creo il contenitore...
 		this.setContentPane(content);
+		this.setResizable(false);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width - 500)/2, (screenSize.height - 200)/2);
 		this.pack();
 		// Imposto il titolo alla view
 		this.setTitle("Num Checker");
@@ -52,41 +67,59 @@ public class View extends JFrame implements Observer {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	/*
-	 * I metodi seguenti servono a chi detiene un riferimento alla view (il
-	 * controller) Se non ci fossero, il controller dovrebbe avere un riferimento
-	 * esplicito a tutti gli elementi della view per poter svolgere operazioni. In
-	 * questo modo, invece, e' sufficiente avere il riferimento all'intera classe View.
+	/**
+	 * Gets the user input.
+	 *
+	 * @return the user input
 	 */
-	// Getter per rendere disponibile all'esterno il valore del campo
 	// testo del textField
 	public String getUserInput() {
 		return userInputTf.getText();
 	}
 
+	/**
+	 * Show error.
+	 *
+	 * @param errMessage the err message
+	 */
 	// Rende disponibile all'esterno l'eventuale testo del messaggio di errore
 	public void showError(String errMessage) {
 		JOptionPane.showMessageDialog(this, errMessage);
 	}
 
+	/**
+	 * Adds the check listener.
+	 *
+	 * @param mal the mal
+	 */
 	// Permette di impostare dall'esterno il listener del bottone moltiplica
 	public void addCheckListener(ActionListener mal) {
 		checkBtn.addActionListener(mal);
 	}
 
-	// Ereditato da Observer, chiama il metodo update definito localmente
-	// quando l'osservato (il modello) effettua una notifica
+	/**
+	 * Property change:
+	 * 
+	 * PropertyChangeEvent class contains information about the property change event,
+	 * including details about the old and new property values. 
+	 * This information is useful for observers who want to react to changes 
+	 * in the properties of an observed object.
+	 *
+	 * @param evt the property change event
+	 */
 	@Override
-	public void update(Observable o, Object arg) {
-		update();
-	}
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("updateResult".equals(evt.getPropertyName())) {
+        	System.out.println("[VIEW] Old Value: " + evt.getOldValue());
+        	System.out.println("[VIEW] New Value: " + evt.getNewValue());
+            update();
+        }
+    }
 
-	// Permette di fare l'update dall'esterno.
-	// In questo caso è l'azione compiuta dalla GUI quando il model
-	// (che è stato impostato come Observable) effettua una notifica
+	/**
+	 * Update the output text field
+	 */
 	private void update() {
-		// Estraggo il valore corrente della "memoria" del modello dal
-		// riferimento al modello e aggiorno il textField.
 		System.out.println("[VIEW] Notified by the model");
 		output.setText(model.getResult());
 	}

@@ -11,7 +11,9 @@ public class MainClass {
 		Model model = new Model();
 		
 		View view = new View(model);
-		
+				
+		model.addPropertyChangeListener(view);
+
 		Controller controller = new Controller(model,view);
 		
 		view.setVisible(true);
