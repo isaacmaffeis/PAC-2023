@@ -13,12 +13,12 @@ public class Controller {
 	// Costruttore
 	public Controller(Model model, View view) {
 		// alloco i riferimenti passati
-		m_model = model;
-		m_view = view;
+		this.model = model;
+		this.view = view;
 
 		// Aggiungo i listener (definiti qui) alla view attraverso i metodi appositi
 		// messi a disposizione della view
-		this.m_view.addCheckListener(new CheckListener());
+		this.view.addCheckListener(new CheckListener());
 	}
 
 	/*
@@ -33,11 +33,11 @@ public class Controller {
 			try {
 				// uso il riferimento alla view per catturare l'input
 				// inserito dall'utente
-				userInput = m_view.getUserInput();
+				userInput = view.getUserInput();
 				// uso il riferimento al modello per controllare il numero
-				m_model.checkNumber(userInput);
+				model.checkNumber(userInput);
 			} catch (NumberFormatException nfex) {
-				m_view.showError("Bad input: '" + userInput + "'");
+				view.showError("Bad input: '" + userInput + "'");
 			}
 		}
 	}
