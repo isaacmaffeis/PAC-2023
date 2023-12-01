@@ -16,6 +16,10 @@
 			<nome>Giuseppe</nome>
 			<cognome>Della Penna</cognome>
 		</docente>
+		<docente rif="6235">
+			<nome>Giuseppe</nome>
+			<cognome>Della Penna</cognome>
+		</docente>
 	</docenti>
 	<testi>
 		<testo>
