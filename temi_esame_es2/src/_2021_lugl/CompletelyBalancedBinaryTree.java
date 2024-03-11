@@ -1,4 +1,12 @@
-package lugl_2021;
+package _2021_lugl;
+
+/* Un albero binario è completamente bilanciato se, oltre ad essere completo 
+ * (cioè ogni nodo interno ha esattamente due figli), tutte le foglie hanno 
+ * la stessa profondità. Progettare e scrivere lo pseudocodice di un algoritmo 
+ * di tipo divide-et-impera in grado di stabilire (restituendo vero o falso)
+ * se un dato albero binario è completamente bilanciato oppure no. 
+ * Calcolare poi la complessità dell’algoritmo proposto.
+ */
 
 class TreeNode {
     int val;
@@ -23,6 +31,12 @@ public class CompletelyBalancedBinaryTree {
         // Se le differenze di profondità sono maggiori di 1, l'albero non è bilanciato
         if (Math.abs(leftDepth - rightDepth) > 1)
             return false;
+        
+        // controllo se completo
+        if(root.left != null && root.right == null)
+        	return false;
+        if(root.left == null && root.right !=null)
+        	return false;
         
         // Ricorsivamente controlla se i sottoalberi sono bilanciati
         return isCompletelyBalanced(root.left) && isCompletelyBalanced(root.right);
@@ -60,7 +74,6 @@ public class CompletelyBalancedBinaryTree {
         boolean isBalanced = treeChecker.isCompletelyBalanced(root);
         System.out.println("Is the tree completely balanced? " + isBalanced);
         
-        CompletelyBalancedBinaryTree treeChecker2 = new CompletelyBalancedBinaryTree();
         
         // Esempio di albero
         TreeNode root2 = new TreeNode(1);
@@ -74,9 +87,26 @@ public class CompletelyBalancedBinaryTree {
         root2.right.right = new TreeNode(7);
         // 4
         root2.left.left.left = new TreeNode(8);
-        root2.left.left.right = new TreeNode(9);
         
-        boolean isBalanced2 = treeChecker2.isCompletelyBalanced(root2);
+        boolean isBalanced2 = treeChecker.isCompletelyBalanced(root2);
         System.out.println("Is the tree completely balanced? " + isBalanced2);
+        
+                
+        // Esempio di albero
+        TreeNode root3 = new TreeNode(1);
+        // 2
+        root3.left = new TreeNode(2);
+        root3.right = new TreeNode(3);
+        // 3
+        root3.left.left = new TreeNode(4);
+        root3.left.right = new TreeNode(5);
+        root3.right.left = new TreeNode(6);
+        root3.right.right = new TreeNode(7);
+        // 4
+        root3.left.left.left = new TreeNode(8);
+        root3.left.left.right = new TreeNode(9);
+        
+        boolean isBalanced3 = treeChecker.isCompletelyBalanced(root3);
+        System.out.println("Is the tree completely balanced? " + isBalanced3);
     }
 }
