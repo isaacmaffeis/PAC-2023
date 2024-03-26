@@ -21,10 +21,12 @@ public class BinaryTreeHistogram {
     private static void computeHistogramHelper(TreeNode node, int height, int[] histogram) {
         if (node == null) return;
 
+        histogram[height] += node.key;
+        
         computeHistogramHelper(node.left, height - 1, histogram);
         computeHistogramHelper(node.right, height - 1, histogram);
         
-        histogram[height] += node.key;
+       
     }
 
     private static int getHeight(TreeNode node) {
